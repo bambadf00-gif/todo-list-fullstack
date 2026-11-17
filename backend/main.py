@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "Bienvenue sur mon Todo List API"}
+    return {"tasks": ["Apprendre Python", "Apprendre FastAPI"]}
