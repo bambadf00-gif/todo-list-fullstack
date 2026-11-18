@@ -14,6 +14,7 @@ def create_user(username,mail,password):
     connecti.commit()
     connecti.close()
 
+
 def get_user_by_mail(mail):
     connecti = sqlite3.connect("todo.db")
     cursor = connecti.cursor()
@@ -101,7 +102,3 @@ def delete_task(task_id):
 
     connecti.commit()
     connecti.close()
-
-delete_user("alice@tet.com")
-delete_user("alice@st.com")
-delete_user("alice@teest.com")
