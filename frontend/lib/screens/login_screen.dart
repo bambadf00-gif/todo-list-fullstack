@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                         password.text,
                       );
                       if (success) {
-                        context.go(AppRoutes.home);
+                        context.go(AppRoutes.home, extra: apiService.userId);
                       }
                       apiService.login(mail.text, password.text);
                     },

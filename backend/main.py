@@ -30,7 +30,11 @@ def login(user: model.UserLogin):
     if user_db[3] != user.password:
         raise HTTPException(status_code=400, detail="Mot de passe incorrect")
 
-    return {"message": "Connexion réussie"}
+    return {
+        "message": "Connexion réussie",
+        "user_id": user_db[0]
+    }
+    
 
 @app.delete("/users/delete")
 def delete(user:model.UserDelete):

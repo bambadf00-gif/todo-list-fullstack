@@ -3,11 +3,10 @@ import 'package:frontend/app/router/app_routes.dart';
 import 'package:frontend/screens/home_screen.dart';
 import 'package:frontend/screens/login_screen.dart';
 import 'package:frontend/screens/register_screen.dart';
-import 'package:frontend/screens/user_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation:  AppRoutes.login,
+  initialLocation: AppRoutes.login,
   routes: [
     GoRoute(
       path: AppRoutes.login,
@@ -30,15 +29,11 @@ final GoRouter router = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.home,
-              builder: (context, state) => HomeScreen(),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.user,
-              builder: (context, state) => const UserScreen(),
+              builder: (context, state) {
+                final userId = state.extra as int;
+
+                return HomeScreen(userId: userId);
+              },
             ),
           ],
         ),
