@@ -18,18 +18,19 @@ def register(user: model.UserCreate):
     return {"message": "Utilisateur créé avec succès"}
 
 @app.post("/users/login")
-def login(user:model.UserLogin):
+def login(user: model.UserLogin):
     user_db = crud.get_user_by_mail(user.mail)
+
     if user_db is None:
-        return {"message": "Utilisateur introuvable"}
+        raise HTTPException(status_code=400, detail="Utilisateur introuvable")
 
     if not user.password:
-        return {"vous n'avez rien ecrit"}
+        raise HTTPException(status_code=400, detail="Mot de passe manquant")
 
     if user_db[3] != user.password:
-        return {"message": "Mot de passe incorrect"}
+        raise HTTPException(status_code=400, detail="Mot de passe incorrect")
 
-    return {"connexion reussit"}
+    return {"message": "Connexion réussie"}
 
 @app.delete("/users/delete")
 def delete(user:model.UserDelete):
